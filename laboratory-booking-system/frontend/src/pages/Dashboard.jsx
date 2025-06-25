@@ -86,39 +86,7 @@ function Dashboard() {
             <img src={user?.profilePic || "/default-profile.png"} alt="User" className="main-user-pic" />
           </div>
         </header>
-        <section className="main-cards">
-          <div className="main-card highlight-card">
-            <h2>Book Your Lab Easily</h2>
-            <p>Reserve, manage, and track lab sessions at University of Jaffna with LabReserve.</p>
-            <Link to="/book-lab" className="main-card-btn">Book Now</Link>
-          </div>
-          <div className="main-card stats-card">
-            <h3>Recent Usage</h3>
-            <div className="stats-graph">
-              <div className="bar" style={{height: '30%'}}></div>
-              <div className="bar" style={{height: '60%'}}></div>
-              <div className="bar" style={{height: '90%'}}></div>
-              <div className="bar" style={{height: '50%'}}></div>
-            </div>
-            <div className="stats-labels">
-              <span>Mon</span>
-              <span>Tue</span>
-              <span>Wed</span>
-              <span>Thu</span>
-            </div>
-          </div>
-          <div className="main-card mentor-card">
-            <h3>Your Mentor</h3>
-            <div className="mentor-info">
-              <img src="/default-profile.png" alt="Mentor" />
-              <div>
-                <span>Dr. S. Rajan</span>
-                <p>Senior Lab Manager</p>
-              </div>
-            </div>
-            <button className="main-card-btn">Contact</button>
-          </div>
-        </section>
+        
         <section className="main-section">
           <h2>Upcoming Bookings</h2>
           <div className="booking-list">
