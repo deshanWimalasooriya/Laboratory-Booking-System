@@ -17,7 +17,7 @@ function LabBook() {
     setUser(JSON.parse(stored));
 
     axios
-      .get("/api/lab/available")
+      .get("/api/lab/available") // <--- Consistent endpoint
       .then((res) => setAvailableLabs(res.data))
       .catch(() => setAvailableLabs([]));
   }, [navigate]);
@@ -25,7 +25,7 @@ function LabBook() {
   const handleBook = async (schedule_id) => {
     setBookingStatus({ ...bookingStatus, [schedule_id]: "Processing..." });
     try {
-      await axios.post("/api/lab/book", { schedule_id, user_id: user.user_id });
+      await axios.post("/api/lab/book", { schedule_id, user_id: user.user_id }); // <--- Consistent endpoint
       setBookingStatus({ ...bookingStatus, [schedule_id]: "Booked!" });
       setAvailableLabs((labs) =>
         labs.filter((lab) => lab.schedule_id !== schedule_id)

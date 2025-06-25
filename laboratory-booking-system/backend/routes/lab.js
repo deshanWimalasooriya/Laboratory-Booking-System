@@ -5,8 +5,8 @@ const db = require('../config/db');
 // Get available lab slots
 router.get('/available', (req, res) => {
   const sql = `
-    SELECT 
-      lab_schedule.schedule_id, 
+    SELECT
+      lab_schedule.schedule_id,
       lab.type AS lab_type, 
       lab.availability,
       lab.capacity,
