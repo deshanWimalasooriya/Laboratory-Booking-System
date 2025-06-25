@@ -7,11 +7,11 @@ router.get('/available', (req, res) => {
   const sql = `
     SELECT
       lab_schedule.schedule_id,
-      lab.type AS lab_type, 
+      lab.type AS lab_type,
       lab.availability,
       lab.capacity,
-      lab_schedule.date, 
-      lab_schedule.time_slot, 
+      lab_schedule.date,
+      lab_schedule.time_slot,
       lab_schedule.status
     FROM lab_schedule
     JOIN lab ON lab_schedule.lab_id = lab.lab_id

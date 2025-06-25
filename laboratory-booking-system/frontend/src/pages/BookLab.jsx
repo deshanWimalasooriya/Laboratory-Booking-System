@@ -7,7 +7,6 @@ function LabBook() {
   const [availableLabs, setAvailableLabs] = useState([]);
   const [bookingStatus, setBookingStatus] = useState({});
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [search, setSearch] = useState("");
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
@@ -17,15 +16,18 @@ function LabBook() {
     setUser(JSON.parse(stored));
 
     axios
-      .get("/api/lab/available") // <--- Consistent endpoint
-      .then((res) => setAvailableLabs(res.data))
+      .get("http://localhost:3000/api/labs/available")
+      .then((res) => {
+        console.log("Received labs data:", res.data);
+        setAvailableLabs(res.data);
+      })
       .catch(() => setAvailableLabs([]));
   }, [navigate]);
 
   const handleBook = async (schedule_id) => {
     setBookingStatus({ ...bookingStatus, [schedule_id]: "Processing..." });
     try {
-      await axios.post("/api/lab/book", { schedule_id, user_id: user.user_id }); // <--- Consistent endpoint
+      await axios.post("http://localhost:3000/api/labs/book", { schedule_id, user_id: user.user_id });
       setBookingStatus({ ...bookingStatus, [schedule_id]: "Booked!" });
       setAvailableLabs((labs) =>
         labs.filter((lab) => lab.schedule_id !== schedule_id)
@@ -34,13 +36,6 @@ function LabBook() {
       setBookingStatus({ ...bookingStatus, [schedule_id]: "Failed!" });
     }
   };
-
-  // Filter labs by lab type or date
-  const filteredLabs = availableLabs.filter(
-    (lab) =>
-      lab.lab_type.toLowerCase().includes(search.toLowerCase()) ||
-      lab.date.includes(search)
-  );
 
   return (
     <div className="labreserve-dashboard-bg">
@@ -114,13 +109,6 @@ function LabBook() {
       {/* Main Content */}
       <main className="labreserve-main">
         <header className="main-header">
-          <input
-            className="main-search"
-            type="text"
-            placeholder="Search labs by name or date..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
           <div className="main-user">
             <span className="main-user-greet">
               Hello, {user?.name?.split(" ")[0] || "User"}!
@@ -133,10 +121,10 @@ function LabBook() {
           </div>
         </header>
         <section className="main-cards">
-          {filteredLabs.length === 0 ? (
+          {availableLabs.length === 0 ? (
             <div className="labbook-empty">No available labs found.</div>
           ) : (
-            filteredLabs.map((lab) => (
+            availableLabs.map((lab) => (
               <div className="main-card labbook-card" key={lab.schedule_id}>
                 <div className="labbook-card-header">
                   <span className="labbook-lab-name">{lab.lab_type}</span>
