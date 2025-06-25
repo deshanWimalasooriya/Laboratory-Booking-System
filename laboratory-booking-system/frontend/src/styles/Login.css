@@ -1,50 +1,169 @@
-.login-container {
-  height: 100vh;
+.labreserve-bg {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #2563eb 0%, #1e40af 100%);
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, #4e54c8, #8f94fb);
-  font-family: 'Segoe UI', sans-serif;
+  justify-content: center;
 }
 
-.login-form {
-  background: white;
-  padding: 40px 30px;
-  border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 400px;
+.labreserve-container {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  max-width: 800px;
+  width: 95vw;
+  overflow: hidden;
+  min-height: 420px;
 }
 
-.login-form h2 {
+.labreserve-left {
+  background: linear-gradient(120deg, #2563eb 0%, #1e40af 100%);
+  color: #fff;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  position: relative;
+  justify-content: center;
+}
+
+.labreserve-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+}
+
+.labreserve-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.labreserve-desc {
+  font-size: 1.05rem;
+  opacity: 0.93;
   text-align: center;
-  margin-bottom: 25px;
-  color: #333;
+  margin-top: 0.5rem;
 }
 
-.login-error {
-  background-color: #f8d7da;
-  color: #842029;
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  text-align: center;
-  font-weight: 500;
+.labreserve-right {
+  background: #fff;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 55%;
 }
 
-.login-form button {
-  width: 100%;
-  padding: 12px;
-  background-color: #4e54c8;
-  color: white;
+.labreserve-welcome {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  letter-spacing: 0.5px;
+}
+
+.labreserve-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 1rem;
+  color: #1e40af;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.input-group input {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #cfd8dc;
+  font-size: 1rem;
+  background: #f7fafc;
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.input-group input:focus {
+  border: 1.5px solid #2563eb;
+  box-shadow: 0 0 0 2px #2563eb33;
+}
+
+.labreserve-btn {
+  margin-top: 0.5rem;
+  padding: 0.85rem 0;
+  background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(42, 82, 152, 0.08);
 }
 
-.login-form button:hover {
-  background-color: #3c40a2;
+.labreserve-btn:disabled {
+  background: #b0b8c1;
+  cursor: not-allowed;
+}
+
+.labreserve-btn:hover:not(:disabled) {
+  box-shadow: 0 4px 16px 0 rgba(42, 82, 152, 0.16);
+}
+
+.labreserve-error {
+  background: #ffeded;
+  color: #c0392b;
+  border-left: 4px solid #c0392b;
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  font-size: 0.97rem;
+  margin-bottom: 0.2rem;
+  text-align: left;
+}
+
+@media (max-width: 800px) {
+  .labreserve-container {
+    flex-direction: column;
+    min-height: unset;
+    width: 98vw;
+  }
+  .labreserve-left,
+  .labreserve-right {
+    width: 100%;
+    padding: 2rem 1rem;
+  }
+  .labreserve-left {
+    border-radius: 24px 24px 0 0;
+  }
+  .labreserve-right {
+    border-radius: 0 0 24px 24px;
+  }
+}
+
+@media (max-width: 500px) {
+  .labreserve-left,
+  .labreserve-right {
+    padding: 1.2rem 0.6rem;
+  }
+  .labreserve-title {
+    font-size: 1.1rem;
+  }
+  .labreserve-welcome {
+    font-size: 1.1rem;
+  }
 }

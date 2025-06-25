@@ -1,97 +1,139 @@
-// src/pages/Dashboard.jsx
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Dashboard.css";
 
 function Dashboard() {
   const [user, setUser] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) setUser(JSON.parse(storedUser));
-  }, []);
-
-  // Function to clear cookies (simple method)
-  function clearAllCookies() {
-    document.cookie.split(";").forEach((c) => {
-      document.cookie = c
-        .replace(/^ +/, "")
-        .replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/`);
-    });
-  }
+    const stored = localStorage.getItem("user");
+    if (!stored) return navigate("/", { replace: true });
+    setUser(JSON.parse(stored));
+  }, [navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    clearAllCookies();
-    navigate("/");
+    localStorage.clear();
+    document.cookie.split(";").forEach(c => {
+      document.cookie = c.replace(/^ +/, "").replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/`);
+    });
+    navigate("/", { replace: true });
   };
 
   return (
-    <div className="dashboard-container">
-      <aside className="sidebar">
+    <div className="labreserve-dashboard-bg">
+      <aside className={`labreserve-sidebar ${sidebarOpen ? "" : "collapsed"}`}>
+        <div className="sidebar-header">
+          <span className="sidebar-logo">
+            <svg width="36" height="36" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="28" fill="#2563eb"/>
+              <path d="M28 15L32 35H24L28 15Z" fill="#fff"/>
+              <circle cx="28" cy="39" r="2" fill="#fff"/>
+            </svg>
+            {sidebarOpen && <span className="sidebar-title">LabReserve</span>}
+          </span>
+          <button className="sidebar-toggle-btn" onClick={() => setSidebarOpen(open => !open)}>
+            <span className="hamburger"></span>
+          </button>
+        </div>
         {user && (
-          <div className="user-info">
-            <img
-              src={user.profilePic || "/default-profile.png"}
-              alt="User Profile"
-              className="profile-pic"
-            />
-            <div className="user-details">
-              <h3>{user.name}</h3>
-              <p>{user.role || "User"}</p>
-            </div>
+          <div className="sidebar-user">
+            <img src={user.profilePic || "/default-profile.png"} alt="User" />
+            {sidebarOpen && (
+              <div>
+                <h3>{user.name}</h3>
+                <p>{user.role || "User"}</p>
+              </div>
+            )}
           </div>
         )}
-        <h2>Lab Booking</h2>
-        <nav>
-          <ul>
-            <li><Link to="/dashboard">Dashboard</Link></li>
-            {/* Conditionally show Book a Lab only if role === "instructor" */}
-            {user && user.role === "instructor" && (
-              <li><Link to="/book-lab">Book a Lab</Link></li>
-            )}
-            <li><Link to="/view-bookings">View Bookings</Link></li>
-            <li>
-              {/* Logout as a clickable element */}
-              <button
-                onClick={handleLogout}
-                className="logout-button"
-                style={{
-                  cursor: "pointer",
-                  background: "none",
-                  border: "none",
-                  padding: 0,
-                  color: "#007bff",
-                  textDecoration: "underline",
-                  fontFamily: "inherit",
-                  fontSize: "1rem",
-                }}
-              >
-                Logout
-              </button>
-            </li>
-          </ul>
+        <nav className="sidebar-nav">
+          <Link to="/dashboard" className="nav-item active">
+            <span className="nav-icon">🏠</span>
+            {sidebarOpen && "Dashboard"}
+          </Link>
+          {user?.role === "instructor" && (
+            <Link to="/book-lab" className="nav-item">
+              <span className="nav-icon">🧪</span>
+              {sidebarOpen && "Book a Lab"}
+            </Link>
+          )}
+          <Link to="/view-bookings" className="nav-item">
+            <span className="nav-icon">📅</span>
+            {sidebarOpen && "View Bookings"}
+          </Link>
+          <button className="nav-item logout" onClick={handleLogout}>
+            <span className="nav-icon">🚪</span>
+            {sidebarOpen && "Logout"}
+          </button>
         </nav>
+        {sidebarOpen && (
+          <div className="sidebar-footer">
+            <Link to="/settings" className="sidebar-settings">
+              <span className="nav-icon">⚙️</span> Settings
+            </Link>
+          </div>
+        )}
       </aside>
-
-      <main className="dashboard-content">
-        <h1>Welcome to the Laboratory Booking System</h1>
-        <p>You can now book labs, view schedules, and manage your reservations.</p>
-        <div className="card-grid">
-          <div className="card">
-            <h3>Upcoming Bookings</h3>
-            <p>Check your reserved lab sessions.</p>
+      <main className="labreserve-main">
+        <header className="main-header">
+          <input className="main-search" type="text" placeholder="Search labs, bookings..." />
+          <div className="main-user">
+            <span className="main-user-greet">
+              Good Morning, {user?.name?.split(" ")[0] || "User"}!
+            </span>
+            <img src={user?.profilePic || "/default-profile.png"} alt="User" className="main-user-pic" />
           </div>
-          <div className="card">
-            <h3>Book New Lab</h3>
-            <p>Submit a booking request for any available lab.</p>
+        </header>
+        <section className="main-cards">
+          <div className="main-card highlight-card">
+            <h2>Book Your Lab Easily</h2>
+            <p>Reserve, manage, and track lab sessions at University of Jaffna with LabReserve.</p>
+            <Link to="/book-lab" className="main-card-btn">Book Now</Link>
           </div>
-          <div className="card">
-            <h3>Manage Profile</h3>
-            <p>Update your profile and preferences.</p>
+          <div className="main-card stats-card">
+            <h3>Recent Usage</h3>
+            <div className="stats-graph">
+              <div className="bar" style={{height: '30%'}}></div>
+              <div className="bar" style={{height: '60%'}}></div>
+              <div className="bar" style={{height: '90%'}}></div>
+              <div className="bar" style={{height: '50%'}}></div>
+            </div>
+            <div className="stats-labels">
+              <span>Mon</span>
+              <span>Tue</span>
+              <span>Wed</span>
+              <span>Thu</span>
+            </div>
           </div>
-        </div>
+          <div className="main-card mentor-card">
+            <h3>Your Mentor</h3>
+            <div className="mentor-info">
+              <img src="/default-profile.png" alt="Mentor" />
+              <div>
+                <span>Dr. S. Rajan</span>
+                <p>Senior Lab Manager</p>
+              </div>
+            </div>
+            <button className="main-card-btn">Contact</button>
+          </div>
+        </section>
+        <section className="main-section">
+          <h2>Upcoming Bookings</h2>
+          <div className="booking-list">
+            <div className="booking-item">
+              <span className="booking-lab">Physics Lab</span>
+              <span className="booking-date">27 June 2025, 10:00 AM</span>
+              <span className="booking-status confirmed">Confirmed</span>
+            </div>
+            <div className="booking-item">
+              <span className="booking-lab">Chemistry Lab</span>
+              <span className="booking-date">28 June 2025, 2:00 PM</span>
+              <span className="booking-status pending">Pending</span>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   );

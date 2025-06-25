@@ -1,0 +1,239 @@
+.labbook-bg {
+  background: #f1f5fa;
+  min-height: 100vh;
+  padding: 2.5rem 2rem;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.labbook-header {
+  max-width: 700px;
+  margin: 0 auto 2.5rem auto;
+  text-align: center;
+}
+
+.labbook-header h1 {
+  color: #2563eb;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.labbook-header p {
+  color: #475569;
+  font-size: 1.1rem;
+}
+
+.labbook-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.labbook-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(37,99,235,0.10);
+  padding: 1.7rem 1.3rem 1.3rem 1.3rem;
+  min-width: 280px;
+  max-width: 330px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  justify-content: space-between;
+  position: relative;
+}
+
+.labbook-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.labbook-lab-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e40af;
+}
+
+.labbook-status {
+  padding: 0.3rem 0.8rem;
+  border-radius: 7px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.labbook-status.available {
+  background: #d1fae5;
+  color: #059669;
+}
+.labbook-status.booked {
+  background: #fef3c7;
+  color: #b45309;
+}
+.labbook-status.completed {
+  background: #e0e7ef;
+  color: #64748b;
+}
+.labbook-status.unavailable {
+  background: #fee2e2;
+  color: #c0392b;
+}
+
+.labbook-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.labbook-label {
+  font-weight: 600;
+  color: #2563eb;
+  margin-right: 0.5rem;
+}
+
+.labbook-btn {
+  margin-top: 0.7rem;
+  padding: 0.7rem 0;
+  background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%);
+  color: #fff;
+  font-size: 1.07rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.18s;
+  box-shadow: 0 2px 8px 0 rgba(42, 82, 152, 0.08);
+}
+
+.labbook-btn:disabled {
+  background: #b0b8c1;
+  cursor: not-allowed;
+}
+
+.labbook-loading,
+.labbook-empty {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin-top: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .labbook-cards {
+    gap: 1.2rem;
+  }
+  .labbook-card {
+    min-width: 90vw;
+    max-width: 98vw;
+  }
+}
+@media (max-width: 600px) {
+  .labbook-header h1 {
+    font-size: 1.5rem;
+  }
+  .labbook-header p {
+    font-size: 1rem;
+  }
+  .labbook-card {
+    padding: 1.3rem;
+    min-width: 90vw;
+    max-width: 98vw;
+  }
+}
+@media (max-width: 400px) {
+  .labbook-header h1 {
+    font-size: 1.3rem;
+  }
+  .labbook-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(37,99,235,0.10);
+  padding: 1.7rem 1.3rem 1.3rem 1.3rem;
+  min-width: 260px;
+  max-width: 330px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  justify-content: space-between;
+  position: relative;
+}
+
+.labbook-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.labbook-lab-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e40af;
+}
+
+.labbook-status {
+  padding: 0.3rem 0.8rem;
+  border-radius: 7px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.labbook-status.available {
+  background: #d1fae5;
+  color: #059669;
+}
+.labbook-status.booked {
+  background: #fef3c7;
+  color: #b45309;
+}
+.labbook-status.completed {
+  background: #e0e7ef;
+  color: #64748b;
+}
+.labbook-status.unavailable {
+  background: #fee2e2;
+  color: #c0392b;
+}
+
+.labbook-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.labbook-label {
+  font-weight: 600;
+  color: #2563eb;
+  margin-right: 0.5rem;
+}
+
+.labbook-btn {
+  margin-top: 0.7rem;
+  padding: 0.7rem 0;
+  background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%);
+  color: #fff;
+  font-size: 1.07rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.18s;
+  box-shadow: 0 2px 8px 0 rgba(42, 82, 152, 0.08);
+}
+
+.labbook-btn:disabled {
+  background: #b0b8c1;
+  cursor: not-allowed;
+}
+
+.labbook-empty {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin-top: 2rem;
+  text-align: center;
+  width: 100%;
+}}
