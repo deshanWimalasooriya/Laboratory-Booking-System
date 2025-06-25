@@ -87,3 +87,36 @@ body {
 .card p {
   color: #555;
 }
+
+/* User info container */
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  gap: 15px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+/* Profile picture round shape */
+.profile-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;  /* makes image round */
+  object-fit: cover;
+  border: 2px solid #555;
+}
+
+/* User details (name + role) */
+.user-details h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #222;
+}
+
+.user-details p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+}

@@ -22,7 +22,8 @@ function Login() {
       });
 
       if (response.data.success) {
-        // You can store user/token here if needed
+        const user = response.data.user;
+        localStorage.setItem("user", JSON.stringify(user)); // ✅ Store in localStorage
         navigate("/dashboard");
       } else {
         setError("Invalid email or password.");

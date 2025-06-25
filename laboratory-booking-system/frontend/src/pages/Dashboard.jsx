@@ -1,11 +1,33 @@
 // src/pages/Dashboard.jsx
-import React from "react";
-import "../styles/Dashboard.css"; // Assuming you have a CSS file for styling
+import React, { useEffect, useState } from "react";
+import "../styles/Dashboard.css";
 
 function Dashboard() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   return (
     <div className="dashboard-container">
       <aside className="sidebar">
+        {user && (
+          <div className="user-info">
+            <img
+              src={user.profilePic || "/default-profile.png"} // fallback image
+              alt="User Profile"
+              className="profile-pic"
+            />
+            <div className="user-details">
+              <h3>{user.name}</h3>
+              <p>{user.role || "User"}</p>
+            </div>
+          </div>
+        )}
         <h2>Lab Booking</h2>
         <nav>
           <ul>
