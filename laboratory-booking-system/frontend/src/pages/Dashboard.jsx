@@ -1,16 +1,31 @@
 // src/pages/Dashboard.jsx
 import React, { useEffect, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "../styles/Dashboard.css";
 
 function Dashboard() {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
+    if (storedUser) setUser(JSON.parse(storedUser));
   }, []);
+
+  // Function to clear cookies (simple method)
+  function clearAllCookies() {
+    document.cookie.split(";").forEach((c) => {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/`);
+    });
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    clearAllCookies();
+    navigate("/");
+  };
 
   return (
     <div className="dashboard-container">
@@ -18,7 +33,7 @@ function Dashboard() {
         {user && (
           <div className="user-info">
             <img
-              src={user.profilePic || "/default-profile.png"} // fallback image
+              src={user.profilePic || "/default-profile.png"}
               alt="User Profile"
               className="profile-pic"
             />
@@ -31,10 +46,31 @@ function Dashboard() {
         <h2>Lab Booking</h2>
         <nav>
           <ul>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Book a Lab</a></li>
-            <li><a href="#">View Bookings</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><Link to="/dashboard">Dashboard</Link></li>
+            {/* Conditionally show Book a Lab only if role === "instructor" */}
+            {user && user.role === "instructor" && (
+              <li><Link to="/book-lab">Book a Lab</Link></li>
+            )}
+            <li><Link to="/view-bookings">View Bookings</Link></li>
+            <li>
+              {/* Logout as a clickable element */}
+              <button
+                onClick={handleLogout}
+                className="logout-button"
+                style={{
+                  cursor: "pointer",
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  color: "#007bff",
+                  textDecoration: "underline",
+                  fontFamily: "inherit",
+                  fontSize: "1rem",
+                }}
+              >
+                Logout
+              </button>
+            </li>
           </ul>
         </nav>
       </aside>
