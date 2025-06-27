@@ -1,4 +1,42 @@
-import React, { useEffect, useState } from "react";
+i want to display different things in the dashboard according to the role of the user:
+
+->give a notification bell icon in the main header area same as YouTube notification bell icon and there functions
+->show notification count on the bell icon
+->display popup window near to the bell icon when notification bell icon is clicked
+
+(role==instructor){
+->structor can see available lab schedule for the lab_schedule table, and instructor can book a lab, and update it in the lab Schedule table,
+->d also instructor can see previous approved, pending and rejected lab bookings from the lab_booking table as number of counts,
+->When the instructor make lab_booking show him to Successfully booking like that
+->give a notification for instructor when the requested lab booking is rejected or approved,
+->and also give notification When the lab_Schedule status is updated as available for the lab_schedule table
+->instructor can cncel the pending lab booking request before it approved
+}
+
+(role=lab_to){
+->lab_to can see lab table, lab_booking table, lab_schedule table and lab_equipment table
+->lab_to can approve or rejected the pending lab booking from the lab_booking table and update it in the status of lab_booking table (approved or rejected),
+->lab_to can update the availability and capacity of the lab table
+->lab_to can Edit the dat, time-slot, and status of lab_schedule table
+->give the notification for him for the newest pending lab booking from the lab_booking table,
+->give a notification when the new lab is added to the lab table,
+->and also instructor can update condition and quantity of the lab equipments from the lab_equipment table
+}
+
+(role==student){
+->only students can see booked labs from the lab schedule table
+->give a notifications for the new booked labs
+}
+
+(role==lecture_in_charge){
+->lecture_in_charge can see and update lab table, lab_Schedule table, user table, take report from user_logs table for some time period or date
+->lecture can see notifications when the lab availability is updated as unavailable form the lab table,
+->and also give notification when the equipment condition are updated as under repair
+ }
+
+
+Dashboard.jsx file:
+(import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Dashboard.css";
 
@@ -133,3 +171,45 @@ function Dashboard() {
 }
 
 export default Dashboard;
+)
+folder structure:
+----------------------------------------------------------------
+>backend
+ |-config 
+ 	|-db.js 
+ |-node_modules 
+ |-routes 
+ 	|-auth.js 
+ 	|-lab.js 
+ |-{ } package-lockjson 
+ |-package.json 
+ |-server.js
+----------------------------------------------------------------
+----------------------------------------------------------------
+>frontend
+ |-node modules 
+ |-public 
+ |-Src 
+    |-components 
+ 	|-InputField.jsx 
+    |-pages 
+ 	|-BookLab.jsx 
+ 	|-Dashboard.jsx 
+ 	|-Login.jsx 
+    |-styles 
+ 	|-BookLab.css 
+ 	|-Dashboard.css 
+ 	|-InputField.css 
+ 	|-Login.css 
+ App.css 
+ App.js 
+ App.test.js 
+ index.css 
+ index.js 
+ logo.svg 
+ reportWebVitals.js
+------------------------------------------------------------------
+
+Give me code files according to the above instructions,
+Give those code file with professional animations and hover effects for page background, icons and texts
+use necessary styles for above,
