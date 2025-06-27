@@ -24,31 +24,12 @@ router.get('/available', (req, res) => {
   });
 });
 
-// Book a lab slot
-router.post('/book', (req, res) => {
-  const { schedule_id, user_id } = req.body;
-  if (!user_id) return res.status(401).json({ error: 'User not authenticated' });
 
-  const insertBooking = `
-    INSERT INTO lab_booking (user_id, lab_id, schedule_id, status, created_at)
-    SELECT ?, l.lab_id, s.schedule_id, 'confirmed', NOW()
-    FROM lab_schedule s
-    JOIN lab l ON s.lab_id = l.lab_id
-    WHERE s.schedule_id = ? AND s.status = 'available'
-  `;
-  db.query(insertBooking, [user_id, schedule_id], (err, result) => {
+router.get('/bookings', (req, res) => {
+  const sql = `SELECT * FROM lab_schedule WHERE status = 'booked'`;
+  db.query(sql, (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
-    if (result.affectedRows === 0) {
-      return res.status(400).json({ error: 'Slot already booked or unavailable' });
-    }
-    db.query(
-      "UPDATE lab_schedule SET status = 'booked' WHERE schedule_id = ?",
-      [schedule_id],
-      (err2) => {
-        if (err2) return res.status(500).json({ error: err2.message });
-        res.json({ success: true });
-      }
-    );
+    res.json(results);
   });
 });
 

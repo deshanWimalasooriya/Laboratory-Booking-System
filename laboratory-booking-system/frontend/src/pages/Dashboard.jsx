@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import NotificationBell from "../components/NotificationBell";
 import "../styles/Dashboard.css";
+import axios from "axios";
 
 function Dashboard() {
   const [user, setUser] = useState(null);
@@ -9,6 +11,20 @@ function Dashboard() {
   const [bookings, setBookings] = useState([]); // New state
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+  const stored = localStorage.getItem("user");
+  if (!stored) return navigate("/", { replace: true });
+  setUser(JSON.parse(stored));
+
+  axios
+    .get("http://localhost:3000/api/labs/bookings")
+    .then((res) => {
+      console.log("Received booked lab data:", res.data);
+      setBookings(res.data);
+    })
+    .catch((err) => setBookings([]));
+}, [navigate]);
 
   useEffect(() => {
     const stored = localStorage.getItem("user");
@@ -26,6 +42,8 @@ function Dashboard() {
 
   return (
     <div className="labreserve-dashboard-bg">
+
+      {/*Sidebar*/}
       <aside className={`labreserve-sidebar ${sidebarOpen ? "" : "collapsed"}`}>
         <div className="sidebar-header">
           <span className="sidebar-logo">
@@ -79,7 +97,10 @@ function Dashboard() {
           </div>
         )}
       </aside>
+
       <main className="labreserve-main">
+
+        {/*Main header*/}
         <header className="main-header">
           <input className="main-search" type="text" placeholder="Search labs, bookings..." />
           <div className="main-user">
@@ -87,8 +108,11 @@ function Dashboard() {
               Good Morning, {user?.name?.split(" ")[0] || "User"}!
             </span>
             <img src={user?.profilePic || "/default-profile.png"} alt="User" className="main-user-pic" />
+            <NotificationBell user={user} />
           </div>
         </header>
+
+        {/*Content*/}
         <section className="main-section">
           <h2>Upcoming Bookings</h2>
           <div className="booking-list">
@@ -127,6 +151,8 @@ function Dashboard() {
             ))}
           </div>
         </section>
+
+
       </main>
     </div>
   );

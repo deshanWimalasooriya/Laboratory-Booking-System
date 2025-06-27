@@ -1,0 +1,54 @@
+.notification-bell-container {
+  position: relative;
+  margin-right: 18px;
+}
+.notification-bell {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  padding: 0;
+  transition: transform 0.2s;
+}
+.notification-bell:hover .bell-icon { transform: scale(1.18) rotate(-10deg); }
+.bell-icon { width: 32px; height: 32px; fill: #2563eb; transition: transform 0.2s; }
+.notification-count {
+  position: absolute;
+  top: -5px; right: -6px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.88rem;
+  padding: 2px 7px;
+  border-radius: 50%;
+  font-weight: bold;
+  animation: bounceIn 0.5s;
+}
+@keyframes bounceIn {
+  0% { transform: scale(0.5); }
+  70% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+.notification-popup {
+  position: absolute;
+  top: 44px; right: 0;
+  min-width: 320px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px #2563eb33;
+  z-index: 100;
+  padding: 18px 14px 12px 14px;
+  animation: fadeInUp 0.3s;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px);}
+  to { opacity: 1; transform: none;}
+}
+.notification-popup h4 { margin: 0 0 12px 0; color: #2563eb; font-size: 1.1rem; }
+.notification-popup ul { list-style: none; padding: 0; margin: 0; }
+.notification-popup li { padding: 8px 0; border-bottom: 1px solid #e5e7eb; font-size: 0.98rem; }
+.notification-popup li:last-child { border-bottom: none; }
+.notification-popup .read { color: #64748b; }
+.notification-popup .unread { font-weight: 600; color: #2563eb; }
+.notification-date { float: right; font-size: 0.85rem; color: #94a3b8; }
+.notification-empty { color: #64748b; text-align: center; padding: 16px 0; }

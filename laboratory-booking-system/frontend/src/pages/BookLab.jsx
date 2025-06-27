@@ -45,6 +45,7 @@ const [manualBookingMsg, setManualBookingMsg] = useState("");
 
   return (
     <div className="labreserve-dashboard-bg">
+
       {/* Sidebar */}
       <aside className={`labreserve-sidebar ${sidebarOpen ? "" : "collapsed"}`}>
         <div className="sidebar-header">
@@ -114,6 +115,8 @@ const [manualBookingMsg, setManualBookingMsg] = useState("");
 
       {/* Main Content */}
       <main className="labreserve-main">
+
+        {/* Main header */}
         <header className="main-header">
           <div className="main-user">
             <span className="main-user-greet">
@@ -126,6 +129,8 @@ const [manualBookingMsg, setManualBookingMsg] = useState("");
             />
           </div>
         </header>
+
+        {/* Content */}
         <section className="main-cards">
           {availableLabs.length === 0 ? (
             <div className="labbook-empty">No available labs found.</div>
