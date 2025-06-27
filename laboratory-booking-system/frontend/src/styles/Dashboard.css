@@ -11,7 +11,11 @@
   --text-dark: #22223b;
   --accent: #a5b4fc;
 }
-
+.body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 /* Layout */
 .labreserve-dashboard-bg {
   display: flex;

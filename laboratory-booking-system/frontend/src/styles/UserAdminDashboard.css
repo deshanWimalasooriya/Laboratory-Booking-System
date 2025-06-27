@@ -1,0 +1,245 @@
+.admin-dashboard {
+  background: #f6f8fa;
+  min-height: 100vh;
+  padding: 2.5rem 0;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto 1.5rem auto;
+  padding: 0 1.5rem;
+}
+
+.dashboard-header h2 {
+  color: #1e293b;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.add-btn {
+  background: linear-gradient(90deg, #2563eb 60%, #1e40af 100%);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 22px;
+  padding: 0.7rem 2rem;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.12);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.add-btn:hover {
+  background: linear-gradient(90deg, #1e40af 60%, #2563eb 100%);
+  transform: scale(1.04);
+}
+
+.user-table-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(37, 99, 235, 0.10), 0 1.5px 4px rgba(0,0,0,0.04);
+  overflow-x: auto;
+  padding: 1.5rem 0.5rem;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1.04rem;
+}
+
+.user-table th, .user-table td {
+  padding: 1rem 1.2rem;
+  text-align: left;
+}
+
+.user-table th {
+  color: #2563eb;
+  font-weight: 700;
+  background: #f1f5fa;
+  border-bottom: 2px solid #e0e7ef;
+}
+
+.user-row {
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.user-row:hover {
+  background: #f8fafc;
+  box-shadow: 0 4px 16px #2563eb11;
+}
+
+.role-badge {
+  display: inline-block;
+  border-radius: 8px;
+  padding: 0.2rem 0.8rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #fff;
+}
+.role-badge.admin {
+  background: linear-gradient(90deg, #2563eb 60%, #1e40af 100%);
+}
+.role-badge.user {
+  background: linear-gradient(90deg, #0ea965 60%, #065f46 100%);
+}
+
+.actions-col {
+  width: 180px;
+}
+
+.edit-btn, .delete-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.3rem;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-right: 0.6rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.edit-btn {
+  background: linear-gradient(90deg, #2563eb 60%, #1e40af 100%);
+  color: #fff;
+}
+.edit-btn:hover {
+  background: linear-gradient(90deg, #1e40af 60%, #2563eb 100%);
+  transform: scale(1.04);
+}
+.delete-btn {
+  background: linear-gradient(90deg, #e11d48 60%, #9f1239 100%);
+  color: #fff;
+}
+.delete-btn:hover {
+  background: linear-gradient(90deg, #9f1239 60%, #e11d48 100%);
+  transform: scale(1.04);
+}
+
+.loading-row {
+  text-align: center;
+  color: #64748b;
+  font-size: 1.1rem;
+  padding: 2rem 0;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30, 41, 59, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  animation: fadeIn 0.25s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(37,99,235,0.17);
+  max-width: 400px;
+  width: 100%;
+  padding: 2.2rem 2rem 1.5rem 2rem;
+  animation: modalPop 0.25s;
+}
+
+@keyframes modalPop {
+  0% { transform: scale(0.93); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-card h3 {
+  margin-bottom: 1.2rem;
+  color: #1e293b;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.user-form label {
+  display: block;
+  margin-bottom: 0.9rem;
+  color: #222c3d;
+  font-weight: 500;
+}
+
+.user-form input, .user-form select {
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  border-radius: 8px;
+  border: 1.5px solid #e0e7ef;
+  background: #f8fafc;
+  font-size: 1rem;
+  margin-top: 0.3rem;
+  color: #222c3d;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.user-form input:focus, .user-form select:focus {
+  border-color: #2563eb;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.save-btn {
+  background: linear-gradient(90deg, #2563eb 60%, #1e40af 100%);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 22px;
+  padding: 0.6rem 1.7rem;
+  font-size: 1.05rem;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.10);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.save-btn:hover {
+  background: linear-gradient(90deg, #1e40af 60%, #2563eb 100%);
+  transform: scale(1.04);
+}
+
+.cancel-btn {
+  background: #e0e7ef;
+  color: #222c3d;
+  border: none;
+  border-radius: 22px;
+  padding: 0.6rem 1.7rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.cancel-btn:hover {
+  background: #cbd5e1;
+  color: #1e40af;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .dashboard-header,
+  .user-table-wrapper {
+    max-width: 99vw;
+    padding: 0 0.3rem;
+  }
+  .modal-card {
+    max-width: 99vw;
+    padding: 1.2rem 0.3rem 1rem 0.3rem;
+  }
+  .user-table th, .user-table td {
+    padding: 0.7rem 0.6rem;
+  }
+}

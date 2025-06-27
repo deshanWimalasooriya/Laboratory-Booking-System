@@ -1,0 +1,134 @@
+.lab-booking-card {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px 0 rgba(37, 99, 235, 0.10), 0 1.5px 4px rgba(0,0,0,0.04);
+  padding: 2.5rem 2rem 2rem 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  transition: box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
+  display: flex;
+  align-items: stretch;
+  position: relative;
+}
+
+.lab-booking-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lab-booking-card__header h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: #222c3d;
+  letter-spacing: 0.5px;
+}
+
+.lab-booking-card__header p {
+  color: #64748b;
+  font-size: 1.08rem;
+  margin-bottom: 1.2rem;
+}
+
+.lab-booking-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem 2rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.lab-booking-form label {
+  font-size: 1rem;
+  color: #1e293b;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 120px;
+}
+
+.lab-booking-form select {
+  padding: 0.4rem 0.7rem;
+  border-radius: 8px;
+  border: 1.5px solid #e0e7ef;
+  background: #f8fafc;
+  font-size: 1rem;
+  color: #222c3d;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.lab-booking-form select:focus {
+  border-color: #2563eb;
+}
+
+.book-btn {
+  background: linear-gradient(90deg, #2563eb 60%, #1e40af 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.08rem;
+  padding: 0.7rem 2.2rem;
+  border: none;
+  border-radius: 32px;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.15);
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s, background 0.3s;
+  margin-left: auto;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.book-btn:hover, .book-btn:focus {
+  background: linear-gradient(90deg, #1e40af 60%, #2563eb 100%);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 32px rgba(37,99,235,0.18);
+}
+
+.book-btn:active {
+  transform: scale(0.98);
+}
+
+.booking-msg {
+  min-width: 120px;
+  margin-left: 1rem;
+  color: #0ea965;
+  font-weight: 500;
+  font-size: 1.04rem;
+  transition: color 0.2s;
+}
+
+@media (max-width: 700px) {
+  .lab-booking-card {
+    flex-direction: column;
+    padding: 1.5rem 0.5rem;
+    max-width: 98vw;
+  }
+  .lab-booking-card__content {
+    padding: 0;
+  }
+  .lab-booking-form {
+    gap: 1rem 0.5rem;
+  }
+  .book-btn {
+    width: 100%;
+    margin: 0.7rem 0 0 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .lab-booking-card {
+    padding: 0.7rem 0.2rem;
+    border-radius: 14px;
+  }
+  .lab-booking-form label {
+    font-size: 0.98rem;
+  }
+  .lab-booking-card__header h3 {
+    font-size: 1.18rem;
+  }
+}

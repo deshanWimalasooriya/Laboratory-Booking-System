@@ -1,0 +1,99 @@
+.request-tabs-root {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(37, 99, 235, 0.10), 0 1.5px 4px rgba(0,0,0,0.04);
+  max-width: 520px;
+  margin: 2.5rem auto;
+  padding: 0;
+  overflow: hidden;
+}
+
+.request-tabs-nav {
+  display: flex;
+  background: linear-gradient(90deg, #0f172a 0%, #2563eb 100%);
+  padding: 0.7rem 1.2rem 0 1.2rem;
+  border-bottom: 1.5px solid #e0e7ef;
+}
+
+.request-tab-btn {
+  background: none;
+  border: none;
+  color: #e0e7ef;
+  font-size: 1.18rem;
+  font-weight: 500;
+  padding: 0.7rem 2.2rem 0.7rem 2.2rem;
+  margin-right: 1.2rem;
+  border-radius: 12px 12px 0 0;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  position: relative;
+}
+
+.request-tab-btn.active {
+  background: #fff;
+  color: #2563eb;
+  font-weight: 700;
+  box-shadow: 0 -2px 0 0 #2563eb inset;
+  z-index: 2;
+}
+
+.request-tab-btn:not(.active):hover {
+  color: #fff;
+  background: rgba(37,99,235,0.10);
+}
+
+.request-tabs-content {
+  padding: 2rem 2rem 1.5rem 2rem;
+}
+
+.request-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.request-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #e0e7ef;
+  font-size: 1.08rem;
+  transition: box-shadow 0.2s;
+}
+
+.request-item:hover {
+  box-shadow: 0 4px 16px #2563eb22;
+}
+
+.request-name {
+  color: #222c3d;
+  font-weight: 500;
+}
+
+.cancel-btn {
+  background: linear-gradient(90deg, #e11d48 60%, #9f1239 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.cancel-btn:hover {
+  background: linear-gradient(90deg, #9f1239 60%, #e11d48 100%);
+  transform: scale(1.04);
+}
+
+.empty-message {
+  color: #64748b;
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 2rem 0;
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import ManualLabBookingCard from "../components/ManualLabBookingCard";
 import axios from "axios";
 import "../styles/BookLab.css";
 
@@ -131,6 +132,20 @@ const [manualBookingMsg, setManualBookingMsg] = useState("");
         </header>
 
         {/* Content */}
+        <ManualLabBookingCard
+          manualLabType={manualLabType}
+          setManualLabType={setManualLabType}
+          manualDate={manualDate}
+          setManualDate={setManualDate}
+          manualTimeSlot={manualTimeSlot}
+          setManualTimeSlot={setManualTimeSlot}
+          manualBookingMsg={manualBookingMsg}
+          setManualBookingMsg={setManualBookingMsg}
+          availableLabs={availableLabs}
+          setAvailableLabs={setAvailableLabs}
+          user={user}
+          handleBook={handleBook}
+        />
         <section className="main-cards">
           {availableLabs.length === 0 ? (
             <div className="labbook-empty">No available labs found.</div>
@@ -168,97 +183,7 @@ const [manualBookingMsg, setManualBookingMsg] = useState("");
             ))
           )}
         </section>
-
-        {/* Manual Booking Section */}
-        <section style={{ margin: "2rem 0", padding: "1.5rem", background: "#f8fafc", borderRadius: "10px", boxShadow: "0 2px 8px #e0e7ef" }}>
-          <h3 style={{ marginBottom: "1rem" }}>Manual Lab Booking</h3>
-          <form
-            onSubmit={async (e) => {
-              e.preventDefault();
-              if (!manualLabType || !manualDate || !manualTimeSlot) {
-                setManualBookingMsg("Please fill all fields.");
-                return;
-              }
-              setManualBookingMsg("Processing...");
-              try {
-                // Find the lab_id for the selected lab type
-                const lab = availableLabs.find(l => l.lab_type === manualLabType);
-                if (!lab) {
-                  setManualBookingMsg("Invalid lab type selected.");
-                  return;
-                }
-                // Find the schedule_id for the selected lab, date, and time slot
-                const schedule = availableLabs.find(
-                  l => l.lab_type === manualLabType && l.date === manualDate && l.time_slot === manualTimeSlot
-                );
-                if (!schedule) {
-                  setManualBookingMsg("No available schedule for this selection.");
-                  return;
-                }
-                await axios.post("http://localhost:3000/api/lab/book", {
-                  schedule_id: schedule.schedule_id,
-                  user_id: user.user_id
-                });
-                setManualBookingMsg("Booked!");
-                setAvailableLabs(labs => labs.filter(l => l.schedule_id !== schedule.schedule_id));
-              } catch {
-                setManualBookingMsg("Booking failed or slot unavailable.");
-              }
-            }}
-            style={{ display: "flex", flexWrap: "wrap", gap: "1rem", alignItems: "center" }}
-          >
-            <label>
-              Lab Type:
-              <select
-                value={manualLabType}
-                onChange={e => setManualLabType(e.target.value)}
-                required
-                style={{ marginLeft: "0.5rem" }}
-              >
-                <option value="">Select</option>
-                {[...new Set(availableLabs.map(l => l.lab_type))].map(type => (
-                  <option key={type} value={type}>{type}</option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Date:
-              <select
-                value={manualDate}
-                onChange={e => setManualDate(e.target.value)}
-                required
-                style={{ marginLeft: "0.5rem" }}
-                disabled={!manualLabType}
-              >
-                <option value="">Select</option>
-                {[...new Set(availableLabs.filter(l => l.lab_type === manualLabType).map(l => l.date))].map(date => (
-                  <option key={date} value={date}>{date}</option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Time Slot:
-              <select
-                value={manualTimeSlot}
-                onChange={e => setManualTimeSlot(e.target.value)}
-                required
-                style={{ marginLeft: "0.5rem" }}
-                disabled={!manualDate}
-              >
-                <option value="">Select</option>
-                {availableLabs
-                  .filter(l => l.lab_type === manualLabType && l.date === manualDate)
-                  .map(l => l.time_slot)
-                  .filter((v, i, arr) => arr.indexOf(v) === i)
-                  .map(slot => (
-                    <option key={slot} value={slot}>{slot}</option>
-                  ))}
-              </select>
-            </label>
-            <button type="submit" style={{ padding: "0.4rem 1rem" }}>Book</button>
-            <span style={{ color: "green", marginLeft: "1rem" }}>{manualBookingMsg}</span>
-          </form>
-        </section>
+        
       </main>
     </div>
   );

@@ -13,8 +13,8 @@ router.get('/available', (req, res) => {
       lab_schedule.date,
       lab_schedule.time_slot,
       lab_schedule.status
-    FROM lab_schedule
-    JOIN lab ON lab_schedule.lab_id = lab.lab_id
+    FROM lab_schedule JOIN lab
+    ON lab_schedule.lab_id = lab.lab_id
     WHERE lab_schedule.status = 'available'
     ORDER BY lab_schedule.date, lab_schedule.time_slot
   `;
@@ -26,7 +26,12 @@ router.get('/available', (req, res) => {
 
 
 router.get('/bookings', (req, res) => {
-  const sql = `SELECT * FROM lab_schedule WHERE status = 'booked'`;
+  const sql = `
+  SELECT *
+  FROM lab_schedule JOIN lab
+  ON lab_schedule.lab_id = lab.lab_id
+  WHERE lab_schedule.status = 'booked'`
+  ;
   db.query(sql, (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json(results);

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import NotificationBell from "../components/NotificationBell";
-import AnimatedProgressBar from "../components/AnimatedProgressBar";
+import RequestTabs from "../components/RequestTabs";
 import "../styles/Dashboard.css";
 import axios from "axios";
-import UserAdminDashboard from "../components/UserAdminDashboard";
 
-function Dashboard() {
+function ViewBookings() {
   const [user, setUser] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const navigate = useNavigate();
@@ -118,35 +117,12 @@ function Dashboard() {
             <NotificationBell user={user} />
           </div>
         </header>
-        <section className="main-section dashboard-section">
-          <UserAdminDashboard user={user} sidebarOpen={sidebarOpen} />
-        </section>
-        {/* New Section: Booked Labs from Lab_booking Table */}
-        <section className="main-section booked-labs-section">
-          {user?.role === "instructor" && (
-            <AnimatedProgressBar pending={8} approved={15} rejected={3} />
-          )}
-          
-          <h2>All Booked Labs</h2>
-          <div className="booking-list">
-            {bookings.length === 0 && !loading && !error && (
-              <div>No bookings found.</div>
-            )}
-            {bookings.map((booking) => (
-              <div className="booking-item" key={booking.id}>
-                <span className="booking-lab">{booking.type}</span>
-                <div className="rightSide"></div>
-                <span className="booking-date">{booking.date}</span>
-                <span className="booking-date">{booking.time_slot}</span>
-              </div>
-            ))}
-          </div>
-        </section>
 
+        <RequestTabs />
 
       </main>
     </div>
   );
 }
 
-export default Dashboard;
+export default ViewBookings;
