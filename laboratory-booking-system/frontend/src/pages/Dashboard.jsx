@@ -85,11 +85,16 @@ function Dashboard() {
             </Link>
           )}
           {user?.role === "instructor" && (
-            <Link to="/view-bookings" className="nav-item">
+          <Link
+            to="/view-bookings"
+            state={{ user }}
+            className="nav-item"
+          >
             <span className="nav-icon">📅</span>
             {sidebarOpen && "View Bookings"}
           </Link>
-          )}
+        )}
+
 
           <button className="nav-item logout" onClick={handleLogout}>
             <span className="nav-icon">🚪</span>

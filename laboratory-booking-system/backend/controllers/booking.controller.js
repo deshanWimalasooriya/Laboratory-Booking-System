@@ -26,9 +26,18 @@ exports.updateBooking = (req, res) => {
 };
 // Delete booking
 exports.deleteBooking = (req, res) => {
-  const booking_id = req.params.id;
+  const booking_id = req.params.booking_id;
   BookingModel.deleteBooking(booking_id, (err, result) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ message: 'Booking deleted successfully' });
+  });
+};
+
+// Get bookings by user
+exports.getBookingsByUser = (req, res) => {
+  const instructor_id = req.params.user_id;
+  BookingModel.getBookingsByUser(instructor_id, (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(results);
   });
 };

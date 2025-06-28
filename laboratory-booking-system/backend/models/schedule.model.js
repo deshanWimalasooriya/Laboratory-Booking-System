@@ -4,6 +4,7 @@ exports.getAvailableLabs = (callback) => {
   const sql = `
     SELECT
       lab_schedules.schedule_id,
+      labs.lab_id,
       labs.type AS lab_type,
       labs.availability,
       labs.capacity,

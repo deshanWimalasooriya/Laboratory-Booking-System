@@ -34,7 +34,7 @@ const [manualBookingMsg, setManualBookingMsg] = useState("");
   const handleBook = async (schedule_id) => {
     setBookingStatus({ ...bookingStatus, [schedule_id]: "Processing..." });
     try {
-      await axios.post("http://localhost:3000/api/labs/book", { schedule_id, user_id: user.user_id });
+      await axios.post("http://localhost:3000/api/bookings");
       setBookingStatus({ ...bookingStatus, [schedule_id]: "Booked!" });
       setAvailableLabs((labs) =>
         labs.filter((lab) => lab.schedule_id !== schedule_id)

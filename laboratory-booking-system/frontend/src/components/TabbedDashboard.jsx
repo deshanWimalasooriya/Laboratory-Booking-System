@@ -34,6 +34,7 @@ export default function TabbedDashboard() {
     .catch((err) => setBookings([]));
 }, [navigate]);
 
+//
   useEffect(() => {
     const stored = localStorage.getItem("user");
     if (!stored) return navigate("/", { replace: true });

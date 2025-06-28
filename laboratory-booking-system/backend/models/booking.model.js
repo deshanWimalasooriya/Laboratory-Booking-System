@@ -34,3 +34,13 @@ exports.deleteBooking = (booking_id, callback) => {
   `;
   db.query(sql, [booking_id], callback);
 }
+
+// Get bookings by user
+exports.getBookingsByUser = (instructor_id, callback) => {
+  const sql = `
+    SELECT *
+    FROM lab_bookings
+    WHERE instructor_id = ?
+  `;
+  db.query(sql, [instructor_id], callback);
+};
