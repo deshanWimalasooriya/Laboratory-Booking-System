@@ -210,6 +210,51 @@ folder structure:
  reportWebVitals.js
 ------------------------------------------------------------------
 
+
+-------------------------------------------------------------------
+Backend;
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+server.js{const express = require('express');
+const cors = require('cors');
+const authRoutes = require('./routes/auth');
+const labRoutes = require('./routes/lab');
+const app = express();
+const PORT = 3000;
+
+app.use(cors());
+app.use(express.json());
+
+app.use('/api/auth', authRoutes);
+app.use('/api/labs', labRoutes); // <--- Use /api/labs everywhere
+
+app.listen(PORT, () => {
+  console.log(`🚀 Backend server running at http://localhost:${PORT}`);
+});
+}
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+config/db.js
+const mysql = require('mysql2');
+
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',         // your MySQL password
+  database: 'laboratory_booking_system' // your database name
+});
+
+db.connect((err) => {
+  if (err) throw err;
+  console.log("✅ Connected to MySQL Database");
+});
+
+module.exports = db;
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+
 Give me code files according to the above instructions,
 Give those code file with professional animations and hover effects for page background, icons and texts
 use necessary styles for above,
+try make proper connection with the back end,
+Give me all js,jsx and css files both frontend and backend
