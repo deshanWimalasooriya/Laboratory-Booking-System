@@ -6,17 +6,17 @@ const db = require('../config/db');
 router.get('/available', (req, res) => {
   const sql = `
     SELECT
-      lab_schedule.schedule_id,
-      lab.type AS lab_type,
-      lab.availability,
-      lab.capacity,
-      lab_schedule.date,
-      lab_schedule.time_slot,
-      lab_schedule.status
-    FROM lab_schedule JOIN lab
-    ON lab_schedule.lab_id = lab.lab_id
-    WHERE lab_schedule.status = 'available'
-    ORDER BY lab_schedule.date, lab_schedule.time_slot
+      lab_schedules.schedule_id,
+      labs.type AS lab_type,
+      labs.availability,
+      labs.capacity,
+      lab_schedules.date,
+      lab_schedules.time_slot,
+      lab_schedules.status
+    FROM lab_schedules JOIN labs
+    ON lab_schedules.lab_id = labs.lab_id
+    WHERE lab_schedules.status = 'available'
+    ORDER BY lab_schedules.date, lab_schedules.time_slot
   `;
   db.query(sql, (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -28,9 +28,9 @@ router.get('/available', (req, res) => {
 router.get('/bookings', (req, res) => {
   const sql = `
   SELECT *
-  FROM lab_schedule JOIN lab
-  ON lab_schedule.lab_id = lab.lab_id
-  WHERE lab_schedule.status = 'booked'`
+  FROM lab_schedules JOIN labs
+  ON lab_schedules.lab_id = labs.lab_id
+  WHERE lab_schedules.status = 'booked'`
   ;
   db.query(sql, (err, results) => {
     if (err) return res.status(500).json({ error: err.message });

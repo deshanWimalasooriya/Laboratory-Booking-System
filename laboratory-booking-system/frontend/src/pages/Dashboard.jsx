@@ -118,15 +118,19 @@ function Dashboard() {
             <NotificationBell user={user} />
           </div>
         </header>
-        <section className="main-section dashboard-section">
-          <UserAdminDashboard user={user} sidebarOpen={sidebarOpen} />
-        </section>
+
+        {user?.role === "lecture_in_charge" && (
+          <section className="main-section dashboard-section">
+            <UserAdminDashboard user={user} sidebarOpen={sidebarOpen} />
+          </section>
+        )}
+
         {/* New Section: Booked Labs from Lab_booking Table */}
         <section className="main-section booked-labs-section">
           {user?.role === "instructor" && (
             <AnimatedProgressBar pending={8} approved={15} rejected={3} />
           )}
-          
+
           <h2>All Booked Labs</h2>
           <div className="booking-list">
             {bookings.length === 0 && !loading && !error && (
