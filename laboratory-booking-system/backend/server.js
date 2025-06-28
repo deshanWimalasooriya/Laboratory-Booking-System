@@ -1,16 +1,7 @@
-const express = require('express');
-const cors = require('cors');
-const authRoutes = require('./routes/auth');
-const labRoutes = require('./routes/lab');
-const app = express();
-const PORT = 3000;
-
-app.use(cors());
-app.use(express.json());
-
-app.use('/api/auth', authRoutes);
-app.use('/api/labs', labRoutes); // <--- Use /api/labs everywhere
+const app = require('./app');
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Backend server running at http://localhost:${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
+

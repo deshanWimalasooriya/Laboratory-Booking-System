@@ -1,52 +1,71 @@
 import React, { useState, useEffect } from "react";
-import "../styles/UserAdminDashboard.css"; // Import your CSS styles
-
-// Mock API functions (replace with real API calls)
-const mockUsers = [
-  { id: 1, name: "Alice", email: "alice@example.com", role: "Admin" },
-  { id: 2, name: "Bob", email: "bob@example.com", role: "User" },
-  { id: 3, name: "Charlie", email: "charlie@example.com", role: "User" }
-];
+import axios from "axios";
+import "../styles/UserAdminDashboard.css";
 
 export default function UserAdminDashboard() {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState({ open: false, mode: "create", user: null });
   const [confirmDelete, setConfirmDelete] = useState({ open: false, user: null });
-  const [form, setForm] = useState({ name: "", email: "", role: "User" });
+  const [form, setForm] = useState({ name: "", email: "", role: "student" });
+
+  // Fetch users from backend
+  const fetchUsers = async () => {
+    try {
+      const res = await axios.get("http://localhost:3000/api/users");
+      setUsers(res.data);
+    } catch (err) {
+      console.error("Failed to fetch users:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    // Simulate API fetch
-    setTimeout(() => setUsers(mockUsers), 400);
+    fetchUsers();
   }, []);
 
   const openModal = (mode, user = null) => {
     setModal({ open: true, mode, user });
-    setForm(user ? { ...user } : { name: "", email: "", role: "User" });
+    setForm(user ? { name: user.name, email: user.email, role: user.role || "student" } : { name: "", email: "", role: "student" });
   };
 
   const closeModal = () => setModal({ open: false, mode: "create", user: null });
 
-  const handleFormChange = e => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (modal.mode === "create") {
-      setUsers(prev => [
-        ...prev,
-        { id: Date.now(), ...form }
-      ]);
-    } else if (modal.mode === "edit") {
-      setUsers(prev =>
-        prev.map(u => (u.id === modal.user.id ? { ...u, ...form } : u))
-      );
-    }
-    closeModal();
+  const handleFormChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleDelete = user => setConfirmDelete({ open: true, user });
-  const confirmDeleteUser = () => {
-    setUsers(prev => prev.filter(u => u.id !== confirmDelete.user.id));
-    setConfirmDelete({ open: false, user: null });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (modal.mode === "create") {
+        await axios.post("http://localhost:3000/api/users", form);
+      } else if (modal.mode === "edit") {
+        await axios.put(`http://localhost:3000/api/users/${modal.user.user_id}`, form);
+      }
+      closeModal();
+      fetchUsers(); // Refresh list
+    } catch (err) {
+      console.error("Error saving user:", err);
+    }
+  };
+
+// Handle delete user
+  const handleDelete = (user) => {
+    setConfirmDelete({ open: true, user });
+  };
+
+// Confirm delete user
+  const confirmDeleteUser = async () => {
+    try {
+      await axios.delete(`http://localhost:3000/api/users/${confirmDelete.user.user_id}`);
+      fetchUsers(); // Refresh list
+    } catch (err) {
+      console.error("Error deleting user:", err);
+    } finally {
+      setConfirmDelete({ open: false, user: null });
+    }
   };
 
   return (
@@ -55,6 +74,7 @@ export default function UserAdminDashboard() {
         <h2>User Management</h2>
         <button className="add-btn" onClick={() => openModal("create")}>Add User</button>
       </div>
+
       <div className="user-table-wrapper">
         <table className="user-table">
           <thead>
@@ -67,9 +87,13 @@ export default function UserAdminDashboard() {
             </tr>
           </thead>
           <tbody>
-            {users.length === 0 ? (
+            {loading ? (
               <tr>
                 <td colSpan="5" className="loading-row">Loading...</td>
+              </tr>
+            ) : users.length === 0 ? (
+              <tr>
+                <td colSpan="5" className="loading-row">No users found</td>
               </tr>
             ) : (
               users.map((user, idx) => (
@@ -77,8 +101,7 @@ export default function UserAdminDashboard() {
                   <td>{idx + 1}</td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td>
-                    <span className={`role-badge ${user.role.toLowerCase()}`}>{user.role}</span>
+                  <td>{user.role}
                   </td>
                   <td>
                     <button className="edit-btn" onClick={() => openModal("edit", user)}>Edit</button>
@@ -94,43 +117,31 @@ export default function UserAdminDashboard() {
       {/* Modal for Create/Edit */}
       {modal.open && (
         <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-card" onClick={e => e.stopPropagation()}>
+          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
             <h3>{modal.mode === "create" ? "Add User" : "Edit User"}</h3>
             <form onSubmit={handleSubmit} className="user-form">
               <label>
                 Name:
-                <input
-                  name="name"
-                  value={form.name}
-                  onChange={handleFormChange}
-                  required
-                  autoFocus
-                />
+                <input name="name" value={form.name} onChange={handleFormChange} required autoFocus />
               </label>
               <label>
                 Email:
-                <input
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleFormChange}
-                  required
-                />
+                <input name="email" type="email" value={form.email} onChange={handleFormChange} required />
               </label>
               <label>
                 Role:
                 <select name="role" value={form.role} onChange={handleFormChange}>
-                  <option value="Admin">Admin</option>
-                  <option value="User">User</option>
+                  <option value="student">Student</option>
+                  <option value="instructor">Instructor</option>
+                  <option value="lab_to">Lab TO</option>
+                  <option value="lecture_in_charge">Lecture In Charge</option>
                 </select>
               </label>
               <div className="modal-actions">
                 <button type="submit" className="save-btn">
                   {modal.mode === "create" ? "Create" : "Update"}
                 </button>
-                <button type="button" className="cancel-btn" onClick={closeModal}>
-                  Cancel
-                </button>
+                <button type="button" className="cancel-btn" onClick={closeModal}>Cancel</button>
               </div>
             </form>
           </div>
@@ -140,7 +151,7 @@ export default function UserAdminDashboard() {
       {/* Confirm Delete Modal */}
       {confirmDelete.open && (
         <div className="modal-overlay" onClick={() => setConfirmDelete({ open: false, user: null })}>
-          <div className="modal-card" onClick={e => e.stopPropagation()}>
+          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
             <h3>Confirm Delete</h3>
             <p>Are you sure you want to delete <b>{confirmDelete.user.name}</b>?</p>
             <div className="modal-actions">
