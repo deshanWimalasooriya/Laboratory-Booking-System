@@ -4,12 +4,14 @@ import axios from "axios";
 import "../styles/TabbedDashboard.css";// Styling
 import UserAdminDashboard from "../components/UserAdminDashboard"; // Import your user admin dashboard component
 import LabScheduleAdminDashboard from "../components/labScheduleAdminDashboard"; // Import your lab schedule admin dashboard component
+import LabAdminDashboard from "./LabAdminDashboard";  // Import your lab admin dashboard component
 
 
 export default function TabbedDashboard() {
   const [activeTab, setActiveTab] = useState("users");
   const [user, setUser] = useState(null);
   const [labSchedule, setLabSchedule] = useState(null);
+  const [labs, setLabs] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const navigate = useNavigate();
   const [bookings, setBookings] = useState([]); // New state
@@ -50,16 +52,16 @@ export default function TabbedDashboard() {
           User Panel
         </button>
         <button
+          className={`tab-btn ${activeTab === "labSchedules" ? "active" : ""}`}
+          onClick={() => setActiveTab("labSchedules")}
+        >
+          Lab Schedule Panel
+        </button>
+        <button
           className={`tab-btn ${activeTab === "labs" ? "active" : ""}`}
           onClick={() => setActiveTab("labs")}
         >
           Lab Panel
-        </button>
-        <button
-          className={`tab-btn ${activeTab === "equipments" ? "active" : ""}`}
-          onClick={() => setActiveTab("equipments")}
-        >
-          Equipment Panel
         </button>
       </div>
 
@@ -69,12 +71,12 @@ export default function TabbedDashboard() {
             <UserAdminDashboard user={user} sidebarOpen={sidebarOpen} />
         )}
 
-        {activeTab === "labs" && (
+        {activeTab === "labSchedules" && (
             <LabScheduleAdminDashboard labSchedule={labSchedule} sidebarOpen={sidebarOpen} />
         )}
 
-        {activeTab === "equipments" && (
-          <UserAdminDashboard user={user} sidebarOpen={sidebarOpen} />
+        {activeTab === "labs" && (
+          <LabAdminDashboard labs={labs} sidebarOpen={sidebarOpen} />
         )}
       </div>
     </div>

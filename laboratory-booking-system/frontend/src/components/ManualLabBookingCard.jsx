@@ -86,7 +86,25 @@ const ManualLabBookingCard = ({
           </select>
         </label>
         <label>
-          Time Slot:
+          Start Time:
+          <select
+            value={manualTimeSlot}
+            onChange={e => setManualTimeSlot(e.target.value)}
+            required
+            disabled={!manualDate}
+          >
+            <option value="">Select</option>
+            {availableLabs
+              .filter(l => l.lab_type === manualLabType && l.date === manualDate)
+              .map(l => l.time_slot)
+              .filter((v, i, arr) => arr.indexOf(v) === i)
+              .map(slot => (
+                <option key={slot} value={slot}>{slot}</option>
+              ))}
+          </select>
+        </label>
+        <label>
+          End Time:
           <select
             value={manualTimeSlot}
             onChange={e => setManualTimeSlot(e.target.value)}

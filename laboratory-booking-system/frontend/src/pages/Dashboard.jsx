@@ -22,7 +22,7 @@ function Dashboard() {
   setUser(JSON.parse(stored));
 
   axios
-    .get("http://localhost:3000/api/labs/bookings")
+    .get("http://localhost:3000/api/schedules/bookings")
     .then((res) => {
       console.log("Received booked lab data:", res.data);
       setBookings(res.data);

@@ -23,7 +23,7 @@ const [manualBookingMsg, setManualBookingMsg] = useState("");
     setUser(JSON.parse(stored));
 
     axios
-      .get("http://localhost:3000/api/labs/available")
+      .get("http://localhost:3000/api/schedules/available")
       .then((res) => {
         console.log("Received labs data:", res.data);
         setAvailableLabs(res.data);
