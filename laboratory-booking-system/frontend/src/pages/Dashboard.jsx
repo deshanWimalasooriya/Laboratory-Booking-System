@@ -4,7 +4,7 @@ import NotificationBell from "../components/NotificationBell";
 import AnimatedProgressBar from "../components/AnimatedProgressBar";
 import "../styles/Dashboard.css";
 import axios from "axios";
-import UserAdminDashboard from "../components/UserAdminDashboard";
+import TabbedDashboard from "../components/TabbedDashboard";
 
 function Dashboard() {
   const [user, setUser] = useState(null);
@@ -121,7 +121,7 @@ function Dashboard() {
 
         {user?.role === "lecture_in_charge" && (
           <section className="main-section dashboard-section">
-            <UserAdminDashboard user={user} sidebarOpen={sidebarOpen} />
+            <TabbedDashboard user={user} sidebarOpen={sidebarOpen}/>
           </section>
         )}
 
