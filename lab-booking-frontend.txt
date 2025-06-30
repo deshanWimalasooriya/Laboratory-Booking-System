@@ -1,0 +1,310 @@
+lab-booking-frontend/
+├── .env
+├── .env.local
+├── .gitignore
+├── package.json
+├── vite.config.js
+├── tailwind.config.js
+├── postcss.config.js
+├── index.html
+├── README.md
+├── public/
+│   ├── favicon.ico
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   ├── robots.txt
+│   └── images/
+│       ├── lab-default.jpg
+│       ├── user-avatar.png
+│       └── hero-bg.jpg
+├── src/
+│   ├── components/
+│   │   ├── common/
+│   │   │   ├── Header.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── LoadingSpinner.jsx
+│   │   │   ├── LoadingSkeleton.jsx
+│   │   │   ├── ErrorBoundary.jsx
+│   │   │   ├── ConfirmDialog.jsx
+│   │   │   ├── Modal.jsx
+│   │   │   ├── Dropdown.jsx
+│   │   │   ├── Tooltip.jsx
+│   │   │   ├── Badge.jsx
+│   │   │   ├── Avatar.jsx
+│   │   │   ├── SearchBar.jsx
+│   │   │   ├── Pagination.jsx
+│   │   │   ├── EmptyState.jsx
+│   │   │   ├── AnimatedPage.jsx
+│   │   │   ├── AnimatedCard.jsx
+│   │   │   ├── AnimatedButton.jsx
+│   │   │   ├── NotificationBell.jsx
+│   │   │   └── ThemeToggle.jsx
+│   │   ├── auth/
+│   │   │   ├── LoginForm.jsx
+│   │   │   ├── RegisterForm.jsx
+│   │   │   ├── ForgotPasswordForm.jsx
+│   │   │   ├── ResetPasswordForm.jsx
+│   │   │   ├── ProtectedRoute.jsx
+│   │   │   ├── RoleBasedRoute.jsx
+│   │   │   └── AuthGuard.jsx
+│   │   ├── profile/
+│   │   │   ├── ProfileView.jsx
+│   │   │   ├── ProfileEdit.jsx
+│   │   │   ├── ProfileImageUpload.jsx
+│   │   │   ├── PasswordChange.jsx
+│   │   │   └── ProfileSettings.jsx
+│   │   ├── dashboard/
+│   │   │   ├── DashboardLayout.jsx
+│   │   │   ├── DashboardStats.jsx
+│   │   │   ├── RecentActivity.jsx
+│   │   │   ├── QuickActions.jsx
+│   │   │   ├── UpcomingBookings.jsx
+│   │   │   └── WeeklyCalendar.jsx
+│   │   ├── laboratory/
+│   │   │   ├── LabList.jsx
+│   │   │   ├── LabCard.jsx
+│   │   │   ├── LabDetails.jsx
+│   │   │   ├── LabForm.jsx
+│   │   │   ├── LabManagement.jsx
+│   │   │   ├── LabSchedule.jsx
+│   │   │   ├── LabAvailability.jsx
+│   │   │   ├── LabSearch.jsx
+│   │   │   └── LabFilters.jsx
+│   │   ├── equipment/
+│   │   │   ├── EquipmentList.jsx
+│   │   │   ├── EquipmentCard.jsx
+│   │   │   ├── EquipmentDetails.jsx
+│   │   │   ├── EquipmentForm.jsx
+│   │   │   ├── EquipmentManagement.jsx
+│   │   │   ├── EquipmentStatus.jsx
+│   │   │   ├── MaintenanceLog.jsx
+│   │   │   └── EquipmentFilters.jsx
+│   │   ├── booking/
+│   │   │   ├── BookingCalendar.jsx
+│   │   │   ├── BookingForm.jsx
+│   │   │   ├── BookingCard.jsx
+│   │   │   ├── BookingList.jsx
+│   │   │   ├── BookingDetails.jsx
+│   │   │   ├── BookingStatus.jsx
+│   │   │   ├── BookingHistory.jsx
+│   │   │   ├── TimeSlotPicker.jsx
+│   │   │   ├── DatePicker.jsx
+│   │   │   ├── BookingApproval.jsx
+│   │   │   ├── PendingBookings.jsx
+│   │   │   ├── BookingConflicts.jsx
+│   │   │   └── RecurringBooking.jsx
+│   │   ├── schedule/
+│   │   │   ├── ScheduleView.jsx
+│   │   │   ├── ScheduleCalendar.jsx
+│   │   │   ├── ScheduleForm.jsx
+│   │   │   ├── ScheduleList.jsx
+│   │   │   ├── WeekView.jsx
+│   │   │   ├── MonthView.jsx
+│   │   │   └── DayView.jsx
+│   │   ├── notifications/
+│   │   │   ├── NotificationList.jsx
+│   │   │   ├── NotificationItem.jsx
+│   │   │   ├── NotificationDropdown.jsx
+│   │   │   ├── NotificationSettings.jsx
+│   │   │   ├── NotificationFilters.jsx
+│   │   │   └── NotificationCenter.jsx
+│   │   ├── chat/
+│   │   │   ├── ChatWindow.jsx
+│   │   │   ├── ChatList.jsx
+│   │   │   ├── ChatRoom.jsx
+│   │   │   ├── MessageBubble.jsx
+│   │   │   ├── MessageInput.jsx
+│   │   │   ├── MessageList.jsx
+│   │   │   ├── ChatHeader.jsx
+│   │   │   ├── ChatSidebar.jsx
+│   │   │   ├── UserList.jsx
+│   │   │   ├── EmojiPicker.jsx
+│   │   │   ├── FileUpload.jsx
+│   │   │   ├── VoiceMessage.jsx
+│   │   │   ├── ImagePreview.jsx
+│   │   │   ├── VideoCall.jsx
+│   │   │   ├── AudioCall.jsx
+│   │   │   ├── ChatSearch.jsx
+│   │   │   ├── MessageStatus.jsx
+│   │   │   ├── TypingIndicator.jsx
+│   │   │   └── OnlineStatus.jsx
+│   │   ├── admin/
+│   │   │   ├── AdminDashboard.jsx
+│   │   │   ├── UserManagement.jsx
+│   │   │   ├── UserTable.jsx
+│   │   │   ├── UserForm.jsx
+│   │   │   ├── RoleManagement.jsx
+│   │   │   ├── SystemSettings.jsx
+│   │   │   ├── Analytics.jsx
+│   │   │   ├── Reports.jsx
+│   │   │   ├── AuditLog.jsx
+│   │   │   └── SystemHealth.jsx
+│   │   ├── forms/
+│   │   │   ├── FormField.jsx
+│   │   │   ├── FormInput.jsx
+│   │   │   ├── FormTextarea.jsx
+│   │   │   ├── FormSelect.jsx
+│   │   │   ├── FormCheckbox.jsx
+│   │   │   ├── FormRadio.jsx
+│   │   │   ├── FormDatePicker.jsx
+│   │   │   ├── FormTimePicker.jsx
+│   │   │   ├── FormFileUpload.jsx
+│   │   │   └── FormValidation.jsx
+│   │   └── ui/
+│   │       ├── Button.jsx
+│   │       ├── Card.jsx
+│   │       ├── Input.jsx
+│   │       ├── Select.jsx
+│   │       ├── Checkbox.jsx
+│   │       ├── Radio.jsx
+│   │       ├── Switch.jsx
+│   │       ├── Slider.jsx
+│   │       ├── Progress.jsx
+│   │       ├── Alert.jsx
+│   │       ├── Toast.jsx
+│   │       ├── Tabs.jsx
+│   │       ├── Accordion.jsx
+│   │       └── Divider.jsx
+│   ├── pages/
+│   │   ├── HomePage.jsx
+│   │   ├── AboutPage.jsx
+│   │   ├── ContactPage.jsx
+│   │   ├── auth/
+│   │   │   ├── LoginPage.jsx
+│   │   │   ├── RegisterPage.jsx
+│   │   │   ├── ForgotPasswordPage.jsx
+│   │   │   └── ResetPasswordPage.jsx
+│   │   ├── dashboard/
+│   │   │   ├── DashboardPage.jsx
+│   │   │   ├── StudentDashboard.jsx
+│   │   │   ├── InstructorDashboard.jsx
+│   │   │   ├── TechnicalOfficerDashboard.jsx
+│   │   │   └── LectureInChargeDashboard.jsx
+│   │   ├── profile/
+│   │   │   ├── ProfilePage.jsx
+│   │   │   └── SettingsPage.jsx
+│   │   ├── laboratory/
+│   │   │   ├── LabsPage.jsx
+│   │   │   ├── LabDetailsPage.jsx
+│   │   │   └── LabManagementPage.jsx
+│   │   ├── equipment/
+│   │   │   ├── EquipmentPage.jsx
+│   │   │   ├── EquipmentDetailsPage.jsx
+│   │   │   └── EquipmentManagementPage.jsx
+│   │   ├── booking/
+│   │   │   ├── BookingPage.jsx
+│   │   │   ├── BookingDetailsPage.jsx
+│   │   │   ├── BookingHistoryPage.jsx
+│   │   │   └── BookingManagementPage.jsx
+│   │   ├── schedule/
+│   │   │   ├── SchedulePage.jsx
+│   │   │   └── ScheduleManagementPage.jsx
+│   │   ├── notifications/
+│   │   │   └── NotificationsPage.jsx
+│   │   ├── chat/
+│   │   │   └── ChatPage.jsx
+│   │   ├── admin/
+│   │   │   ├── AdminPage.jsx
+│   │   │   ├── UsersPage.jsx
+│   │   │   ├── SystemPage.jsx
+│   │   │   └── ReportsPage.jsx
+│   │   └── error/
+│   │       ├── NotFoundPage.jsx
+│   │       ├── UnauthorizedPage.jsx
+│   │       └── ServerErrorPage.jsx
+│   ├── context/
+│   │   ├── AuthContext.jsx
+│   │   ├── SocketContext.jsx
+│   │   ├── ChatContext.jsx
+│   │   ├── NotificationContext.jsx
+│   │   ├── BookingContext.jsx
+│   │   ├── ThemeContext.jsx
+│   │   └── AppContext.jsx
+│   ├── hooks/
+│   │   ├── useAuth.js
+│   │   ├── useSocket.js
+│   │   ├── useChat.js
+│   │   ├── useNotifications.js
+│   │   ├── useBooking.js
+│   │   ├── useApi.js
+│   │   ├── useLocalStorage.js
+│   │   ├── useDebounce.js
+│   │   ├── useInfiniteScroll.js
+│   │   ├── useFileUpload.js
+│   │   ├── useForm.js
+│   │   ├── useModal.js
+│   │   ├── useToast.js
+│   │   ├── usePermissions.js
+│   │   └── useRealTime.js
+│   ├── services/
+│   │   ├── api.js
+│   │   ├── authService.js
+│   │   ├── userService.js
+│   │   ├── labService.js
+│   │   ├── equipmentService.js
+│   │   ├── bookingService.js
+│   │   ├── scheduleService.js
+│   │   ├── notificationService.js
+│   │   ├── chatService.js
+│   │   ├── fileService.js
+│   │   ├── socketService.js
+│   │   └── storageService.js
+│   ├── utils/
+│   │   ├── constants.js
+│   │   ├── helpers.js
+│   │   ├── validators.js
+│   │   ├── formatters.js
+│   │   ├── dateUtils.js
+│   │   ├── fileUtils.js
+│   │   ├── permissions.js
+│   │   ├── animations.js
+│   │   └── errorHandling.js
+│   ├── styles/
+│   │   ├── globals.css
+│   │   ├── components.css
+│   │   ├── animations.css
+│   │   ├── utilities.css
+│   │   └── themes/
+│   │       ├── light.css
+│   │       └── dark.css
+│   ├── assets/
+│   │   ├── images/
+│   │   │   ├── logo.svg
+│   │   │   ├── hero-bg.jpg
+│   │   │   ├── lab-placeholder.jpg
+│   │   │   └── avatars/
+│   │   ├── icons/
+│   │   │   ├── lab.svg
+│   │   │   ├── booking.svg
+│   │   │   ├── chat.svg
+│   │   │   └── notification.svg
+│   │   └── sounds/
+│   │       ├── notification.mp3
+│   │       ├── message.mp3
+│   │       └── success.mp3
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── tests/
+│   ├── components/
+│   │   ├── Auth.test.jsx
+│   │   ├── Booking.test.jsx
+│   │   └── Chat.test.jsx
+│   ├── hooks/
+│   │   ├── useAuth.test.js
+│   │   └── useSocket.test.js
+│   ├── services/
+│   │   ├── api.test.js
+│   │   └── authService.test.js
+│   ├── utils/
+│   │   ├── helpers.test.js
+│   │   └── validators.test.js
+│   └── setup.js
+└── docs/
+    ├── COMPONENTS.md
+    ├── HOOKS.md
+    ├── SERVICES.md
+    └── DEPLOYMENT.md

@@ -1,0 +1,123 @@
+lab-booking-backend/
+├── .env
+├── .gitignore
+├── package.json
+├── server.js
+├── README.md
+├── uploads/
+│   ├── profiles/
+│   └── documents/
+├── logs/
+│   ├── error.log
+│   └── combined.log
+├── tests/
+│   ├── auth.test.js
+│   ├── booking.test.js
+│   ├── equipment.test.js
+│   └── setup.js
+├── migrations/
+│   ├── 20250630000001-create-users.js
+│   ├── 20250630000002-create-laboratories.js
+│   ├── 20250630000003-create-equipment.js
+│   ├── 20250630000004-create-schedules.js
+│   ├── 20250630000005-create-bookings.js
+│   ├── 20250630000006-create-notifications.js
+│   ├── 20250630000007-create-chat-rooms.js
+│   └── 20250630000008-create-messages.js
+├── seeders/
+│   ├── 20250630000001-demo-users.js
+│   ├── 20250630000002-demo-laboratories.js
+│   ├── 20250630000003-demo-equipment.js
+│   └── 20250630000004-demo-schedules.js
+├── src/
+│   ├── config/
+│   │   ├── database.js
+│   │   ├── jwt.js
+│   │   ├── socket.js
+│   │   ├── multer.js
+│   │   ├── email.js
+│   │   └── logger.js
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── userController.js
+│   │   ├── profileController.js
+│   │   ├── labController.js
+│   │   ├── equipmentController.js
+│   │   ├── scheduleController.js
+│   │   ├── bookingController.js
+│   │   ├── approvalController.js
+│   │   ├── notificationController.js
+│   │   ├── chatController.js
+│   │   ├── messageController.js
+│   │   ├── fileController.js
+│   │   └── dashboardController.js
+│   ├── middleware/
+│   │   ├── auth.js
+│   │   ├── roleCheck.js
+│   │   ├── validation.js
+│   │   ├── uploadMiddleware.js
+│   │   ├── socketAuth.js
+│   │   ├── errorHandler.js
+│   │   ├── rateLimiter.js
+│   │   └── logger.js
+│   ├── models/
+│   │   ├── index.js
+│   │   ├── User.js
+│   │   ├── Laboratory.js
+│   │   ├── Equipment.js
+│   │   ├── Schedule.js
+│   │   ├── Booking.js
+│   │   ├── Notification.js
+│   │   ├── ChatRoom.js
+│   │   ├── Message.js
+│   │   ├── UserChatRoom.js
+│   │   └── associations.js
+│   ├── routes/
+│   │   ├── index.js
+│   │   ├── authRoutes.js
+│   │   ├── userRoutes.js
+│   │   ├── profileRoutes.js
+│   │   ├── labRoutes.js
+│   │   ├── equipmentRoutes.js
+│   │   ├── scheduleRoutes.js
+│   │   ├── bookingRoutes.js
+│   │   ├── approvalRoutes.js
+│   │   ├── notificationRoutes.js
+│   │   ├── chatRoutes.js
+│   │   ├── messageRoutes.js
+│   │   ├── fileRoutes.js
+│   │   └── dashboardRoutes.js
+│   ├── services/
+│   │   ├── authService.js
+│   │   ├── userService.js
+│   │   ├── labService.js
+│   │   ├── equipmentService.js
+│   │   ├── bookingService.js
+│   │   ├── approvalService.js
+│   │   ├── notificationService.js
+│   │   ├── emailService.js
+│   │   ├── chatService.js
+│   │   ├── messageService.js
+│   │   ├── fileService.js
+│   │   ├── cronJobs.js
+│   │   └── socketService.js
+│   ├── sockets/
+│   │   ├── index.js
+│   │   ├── authHandler.js
+│   │   ├── chatHandler.js
+│   │   ├── notificationHandler.js
+│   │   ├── bookingHandler.js
+│   │   └── roomHandler.js
+│   ├── utils/
+│   │   ├── constants.js
+│   │   ├── helpers.js
+│   │   ├── validators.js
+│   │   ├── encryption.js
+│   │   ├── dateUtils.js
+│   │   ├── fileUtils.js
+│   │   └── responseUtils.js
+│   └── app.js
+└── docs/
+    ├── API.md
+    ├── DATABASE.md
+    └── DEPLOYMENT.md
