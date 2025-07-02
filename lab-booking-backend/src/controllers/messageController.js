@@ -5,6 +5,15 @@ import UserChatRoom from '../models/UserChatRoom.js';
 import { createResponse, createError } from '../utils/responseUtils.js';
 import { uploadToCloudinary } from '../services/fileService.js';
 
+// Get all messages in a chat room
+export const getMessagesByChatRoom = async (req, res) => {
+  // Example: Fetch messages by chatRoomId from DB (replace with your logic)
+  const { chatRoomId } = req.params;
+  // const messages = await Message.findAll({ where: { chatRoomId } });
+  res.json({ success: true, messages: [], chatRoomId });
+};
+
+
 // Get messages for a chat room
 export const getMessages = async (req, res) => {
   try {
@@ -347,4 +356,11 @@ export const searchMessages = async (req, res) => {
     console.error('Search messages error:', error);
     res.status(500).json(createError('Failed to search messages', 500));
   }
+};
+
+// Get a single message by ID
+export const getMessageById = async (req, res) => {
+  const { id } = req.params;
+  // const message = await Message.findByPk(id);
+  res.json({ success: true, message: {}, id });
 };

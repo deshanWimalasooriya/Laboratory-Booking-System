@@ -7,7 +7,14 @@ import { Server } from 'socket.io';
 import { sequelize, testConnection } from './config/database.js';
 import { initializeSocketHandlers } from './sockets/index.js';
 import apiRoutes from './routes/index.js';
+
+//middlewares
 import { errorHandler } from './middleware/errorHandler.js';
+import { authenticate } from './middleware/auth.js';
+import { apiLimiter } from './middleware/rateLimiter.js';
+import { requestLogger, errorLogger } from './middleware/logger.js';
+import { socketAuth } from './middleware/socketAuth.js';
+
 import { logger } from './config/logger.js';
 import cron from 'node-cron';
 import { cleanupExpiredNotifications } from './services/notificationService.js';
@@ -24,6 +31,15 @@ const io = new Server(server, {
   },
   transports: ['websocket', 'polling'],
 });
+
+io.use(socketAuth);
+
+app.use(requestLogger);
+// ... your routes
+app.use(errorLogger); // (optional, before errorHandler)
+
+app.use('/api/', apiLimiter);
+app.use(errorHandler);
 
 // Security middleware
 app.use(helmet({

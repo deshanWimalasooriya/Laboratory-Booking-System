@@ -2,6 +2,8 @@ import { Op } from 'sequelize';
 import User from '../models/User.js';
 import { createResponse, createError } from '../utils/responseUtils.js';
 import { uploadToCloudinary, deleteFromCloudinary } from '../services/fileService.js';
+import { getUserById } from '../services/userService.js';
+
 
 // Get all users (Admin only)
 export const getAllUsers = async (req, res) => {

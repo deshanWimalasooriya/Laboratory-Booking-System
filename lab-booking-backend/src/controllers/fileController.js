@@ -29,6 +29,12 @@ export const uploadFile = async (req, res) => {
   }
 };
 
+// Get a file by ID or filename
+export const getFile = async (req, res) => {
+  // Implement your file retrieval logic here
+  res.json({ success: true, message: 'Get file (mock)', id: req.params.id });
+};
+
 // Upload multiple files
 export const uploadMultipleFiles = async (req, res) => {
   try {
@@ -170,4 +176,14 @@ export const getUploadProgress = async (req, res) => {
     console.error('Get upload progress error:', error);
     res.status(500).json(createError('Failed to get upload progress', 500));
   }
+};
+
+// List files (basic mock implementation)
+export const listFiles = async (req, res) => {
+  // TODO: Replace this with your actual file listing logic
+  res.json({
+    success: true,
+    files: [], // return an array of file metadata here
+    message: 'File listing (mock)'
+  });
 };

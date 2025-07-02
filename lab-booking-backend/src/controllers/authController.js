@@ -4,20 +4,33 @@ import User from '../models/User.js';
 import { sendEmail } from '../services/emailService.js';
 import { createResponse, createError } from '../utils/responseUtils.js';
 import { validateRegistration, validateLogin } from '../utils/validators.js';
+import { generateAccessToken, generateRefreshToken } from '../config/jwt.js';
 
 // Generate JWT tokens
-const generateTokens = (userId) => {
-  const accessToken = jwt.sign({ userId }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
+{/*
+  const generateTokens = (userId) => {
+  const accessToken = jwt.sign(
+  { userId: user.id, role: user.role },
+  process.env.JWT_SECRET,
+  { expiresIn: '7d' }
+);
+res.json({ success: true, accessToken, user });
 
   const refreshToken = jwt.sign({ userId }, process.env.JWT_REFRESH_SECRET, {
     expiresIn: process.env.JWT_REFRESH_EXPIRE,
   });
 
   return { accessToken, refreshToken };
-};
+}; */}
 
+
+export const generateTokens = (user) => {
+  if (!user) throw new Error('User is not defined');
+  return {
+    accessToken: generateAccessToken({ userId: user.id, role: user.role }),
+    refreshToken: generateRefreshToken({ userId: user.id, role: user.role }),
+  };
+};
 // Register new user
 export const register = async (req, res) => {
   try {
@@ -147,8 +160,9 @@ export const login = async (req, res) => {
     // Update last login
     await user.update({ lastLogin: new Date() });
 
-    // Generate tokens
-    const { accessToken, refreshToken } = generateTokens(user.id);
+    // Generate tokens (pass the whole user object)
+    const accessToken = generateAccessToken({ userId: user.id, role: user.role });
+    const refreshToken = generateRefreshToken({ userId: user.id, role: user.role });
 
     // Set refresh token as HTTP-only cookie
     res.cookie('refreshToken', refreshToken, {
@@ -160,8 +174,10 @@ export const login = async (req, res) => {
 
     // Remove password from response
     const userResponse = user.toJSON();
+    delete userResponse.password;
 
-    res.json(createResponse({
+    // Send only one response!
+    return res.json(createResponse({
       message: 'Login successful',
       user: userResponse,
       accessToken,
@@ -169,7 +185,7 @@ export const login = async (req, res) => {
 
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json(createError('Login failed', 500));
+    return res.status(500).json(createError('Login failed', 500, error.message));
   }
 };
 
