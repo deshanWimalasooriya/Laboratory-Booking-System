@@ -630,3 +630,33 @@
 {"level":"info","message":"POST /api/user - ::1","service":"lab-booking-api","timestamp":"2025-07-02T19:21:38.987Z"}
 {"level":"info","message":"GET /api/users - ::1","service":"lab-booking-api","timestamp":"2025-07-02T19:23:40.188Z"}
 {"level":"info","message":"GET /api/users - ::1","service":"lab-booking-api","timestamp":"2025-07-02T19:23:40.189Z"}
+{"level":"info","message":"POST /api/auth/login - ::1","service":"lab-booking-api","timestamp":"2025-07-02T19:26:48.083Z"}
+{"level":"info","message":"POST /api/auth/login - ::1","service":"lab-booking-api","timestamp":"2025-07-02T19:26:48.085Z"}
+{"level":"info","message":"POST /api/auth/profile - ::1","service":"lab-booking-api","timestamp":"2025-07-02T19:27:40.254Z"}
+{"level":"info","message":"POST /api/auth/profile - ::1","service":"lab-booking-api","timestamp":"2025-07-02T19:27:40.255Z"}
+{"level":"info","message":"GET /api/auth/profile - ::1","service":"lab-booking-api","timestamp":"2025-07-02T19:27:46.843Z"}
+{"level":"info","message":"GET /api/auth/profile - ::1","service":"lab-booking-api","timestamp":"2025-07-02T19:27:46.846Z"}
+{"level":"info","message":"🚀 Server running on port 5002","service":"lab-booking-api","timestamp":"2025-07-02T19:29:12.813Z"}
+{"level":"info","message":"📱 Environment: development","service":"lab-booking-api","timestamp":"2025-07-02T19:29:12.816Z"}
+{"level":"info","message":"🔗 API Base URL: http://localhost:5002/api","service":"lab-booking-api","timestamp":"2025-07-02T19:29:12.817Z"}
+{"level":"info","message":"💬 Socket.io enabled for real-time features","service":"lab-booking-api","timestamp":"2025-07-02T19:29:12.817Z"}
+{"level":"info","message":"Application initialized successfully","service":"lab-booking-api","timestamp":"2025-07-02T19:29:12.852Z"}
+{"level":"info","message":"🚀 Server running on port 5002","service":"lab-booking-api","timestamp":"2025-07-12T04:44:44.899Z"}
+{"level":"info","message":"📱 Environment: development","service":"lab-booking-api","timestamp":"2025-07-12T04:44:44.903Z"}
+{"level":"info","message":"🔗 API Base URL: http://localhost:5002/api","service":"lab-booking-api","timestamp":"2025-07-12T04:44:44.904Z"}
+{"level":"info","message":"💬 Socket.io enabled for real-time features","service":"lab-booking-api","timestamp":"2025-07-12T04:44:44.905Z"}
+{"level":"info","message":"🚀 Server running on port 5002","service":"lab-booking-api","timestamp":"2025-07-12T04:45:56.361Z"}
+{"level":"info","message":"📱 Environment: development","service":"lab-booking-api","timestamp":"2025-07-12T04:45:56.370Z"}
+{"level":"info","message":"🔗 API Base URL: http://localhost:5002/api","service":"lab-booking-api","timestamp":"2025-07-12T04:45:56.372Z"}
+{"level":"info","message":"💬 Socket.io enabled for real-time features","service":"lab-booking-api","timestamp":"2025-07-12T04:45:56.375Z"}
+{"level":"info","message":"Application initialized successfully","service":"lab-booking-api","timestamp":"2025-07-12T04:45:56.532Z"}
+{"level":"info","message":"🚀 Server running on port 5002","service":"lab-booking-api","timestamp":"2025-07-12T04:54:39.091Z"}
+{"level":"info","message":"📱 Environment: development","service":"lab-booking-api","timestamp":"2025-07-12T04:54:39.095Z"}
+{"level":"info","message":"🔗 API Base URL: http://localhost:5002/api","service":"lab-booking-api","timestamp":"2025-07-12T04:54:39.096Z"}
+{"level":"info","message":"💬 Socket.io enabled for real-time features","service":"lab-booking-api","timestamp":"2025-07-12T04:54:39.096Z"}
+{"level":"info","message":"Application initialized successfully","service":"lab-booking-api","timestamp":"2025-07-12T04:54:39.136Z"}
+{"level":"info","message":"🚀 Server running on port 5002","service":"lab-booking-api","timestamp":"2025-07-12T04:58:53.057Z"}
+{"level":"info","message":"📱 Environment: development","service":"lab-booking-api","timestamp":"2025-07-12T04:58:53.068Z"}
+{"level":"info","message":"🔗 API Base URL: http://localhost:5002/api","service":"lab-booking-api","timestamp":"2025-07-12T04:58:53.071Z"}
+{"level":"info","message":"💬 Socket.io enabled for real-time features","service":"lab-booking-api","timestamp":"2025-07-12T04:58:53.084Z"}
+{"level":"info","message":"Application initialized successfully","service":"lab-booking-api","timestamp":"2025-07-12T04:58:53.229Z"}
