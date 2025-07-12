@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react'
 import { authService } from '../services/authService'
+import { handleError } from '../utils/errorHandling'
 
 const AuthContext = createContext()
 
@@ -38,8 +39,15 @@ function authReducer(state, action) {
         isLoading: false,
         error: null,
       }
+    case 'UPDATE_USER':
+      return {
+        ...state,
+        user: { ...state.user, ...action.payload },
+      }
     case 'SET_LOADING':
       return { ...state, isLoading: action.payload }
+    case 'CLEAR_ERROR':
+      return { ...state, error: null }
     default:
       return state
   }
@@ -75,20 +83,54 @@ export function AuthProvider({ children }) {
       dispatch({ type: 'LOGIN_SUCCESS', payload: response.user })
       return response
     } catch (error) {
-      dispatch({ type: 'LOGIN_FAILURE', payload: error.message })
-      throw error
+      const appError = handleError(error, false)
+      dispatch({ type: 'LOGIN_FAILURE', payload: appError.message })
+      throw appError
     }
   }
 
-  const logout = () => {
-    localStorage.removeItem('token')
-    dispatch({ type: 'LOGOUT' })
+  const register = async (userData) => {
+    dispatch({ type: 'LOGIN_START' })
+    try {
+      const response = await authService.register(userData)
+      if (response.token) {
+        localStorage.setItem('token', response.token)
+        dispatch({ type: 'LOGIN_SUCCESS', payload: response.user })
+      }
+      return response
+    } catch (error) {
+      const appError = handleError(error, false)
+      dispatch({ type: 'LOGIN_FAILURE', payload: appError.message })
+      throw appError
+    }
+  }
+
+  const logout = async () => {
+    try {
+      await authService.logout()
+    } catch (error) {
+      console.error('Logout error:', error)
+    } finally {
+      localStorage.removeItem('token')
+      dispatch({ type: 'LOGOUT' })
+    }
+  }
+
+  const updateUser = (userData) => {
+    dispatch({ type: 'UPDATE_USER', payload: userData })
+  }
+
+  const clearError = () => {
+    dispatch({ type: 'CLEAR_ERROR' })
   }
 
   const value = {
     ...state,
     login,
+    register,
     logout,
+    updateUser,
+    clearError,
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
